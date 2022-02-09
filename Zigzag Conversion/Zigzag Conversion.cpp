@@ -3,10 +3,37 @@
 
 #include <iostream>
 #include <vector>
+using namespace std;
+
+void print2DVector(vector<vector<char>>& arr) {
+    for (int i = 0; i < arr.size(); i++) {
+        for (int j = 0; j < arr[i].size(); j++) {
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+string convert(string s, int numRows) {
+    vector<vector<char>> row(numRows);
+    int pointer = 0;
+    int direction = 1;
+    for (int i = 0; i < s.size(); i++) {
+        row[pointer].push_back((char)s[i]);
+        pointer = pointer + direction;
+        if (pointer == 0 || pointer == numRows-1) {
+            direction = direction * -1;
+        }
+    }
+    print2DVector(row);
+    return "";
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    string s = "PAYPALISHIRING";
+    convert(s, 3);
+ 
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
