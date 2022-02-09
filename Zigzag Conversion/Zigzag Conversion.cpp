@@ -16,23 +16,37 @@ void print2DVector(vector<vector<char>>& arr) {
 
 string convert(string s, int numRows) {
     vector<vector<char>> row(numRows);
+    string ans = "";
     int pointer = 0;
     int direction = 1;
+    //read string zig zac
     for (int i = 0; i < s.size(); i++) {
         row[pointer].push_back((char)s[i]);
         pointer = pointer + direction;
-        if (pointer == 0 || pointer == numRows-1) {
+        if (pointer  <= 0 || pointer  >= numRows-1) {
+            if (pointer > numRows - 1) {
+                pointer = numRows - 1;
+            }
+            if (pointer < 0) {
+                pointer = 0;
+            }
             direction = direction * -1;
         }
     }
+    //create new string 
+    for (int i = 0; i < row.size(); i++) {
+        string temp(row[i].begin(), row[i].end() );
+        ans.append(temp, 0, temp.size());
+    }
     print2DVector(row);
-    return "";
+    return ans;
 }
 
 int main()
 {
     string s = "PAYPALISHIRING";
-    convert(s, 3);
+    string ans = convert("AB", 1);
+    cout << ans;
  
 }
 
